@@ -6,7 +6,7 @@
 
 .search-text {
     display: none;
-    margin-left: 8px;
+    /* margin-left: 8px; */
     font-size: 16px;
     font-weight: 500;
 }
@@ -168,6 +168,7 @@
     /* When menu is open */
     .nav-menu.open {
         max-height: 90vh;
+
         /* fits most screens */
         overflow-y: auto;
         /* scroll when too tall */
@@ -181,13 +182,16 @@
     .nav-menu li {
         width: 100%;
         padding: 8px;
+        /* padding-left: 10px;
+        padding-right: 10px; */
     }
 
     .dropdown-menu ul {
         padding: 0px;
     }
 
-    .wide-dropdown .dropdown-columns {
+
+    .dropdown-inner .dropdown-columns {
         flex-direction: column;
         gap: 0px;
     }
@@ -239,7 +243,7 @@
 
     .hero {
         height: 80vh;
-        padding: 40px 16px 80px;
+        /* padding: 40px 16px 80px; */
     }
 
     .hero-content,
@@ -347,7 +351,10 @@
 
     .arrow {
         display: none;
-        /* Optional: hide arrows on tiny screens */
+        /* font-size: 8px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%; */
     }
 }
 
