@@ -140,29 +140,7 @@
       margin: 0 auto;
     }
 
-    .back-btn {
-      position: absolute;
-      left: 10px;
-      top: 20%;
-      transform: translateY(-50%);
-      color: #b10020;
-      font-size: 1.0rem;
-      width: 32px;
-      height: 32px;
-      /* background: rgba(255, 255, 255, 0.2); */
-      background: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s ease;
-      text-decoration: none;
-    }
 
-    .back-btn:hover {
-      background: rgba(255, 255, 255, 0.4);
-      color: white;
-    }
 
     .blog-hero-text {
       /* max-width: 800px; */
@@ -290,6 +268,8 @@
 
     /* Responsive */
     @media (max-width: 768px) {
+
+
       .related-header {
         flex-direction: column;
         align-items: flex-start;
@@ -307,10 +287,11 @@
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .back-btn {
-        left: 15px;
-        width: 40px;
-        height: 40px;
-        font-size: 1.4rem;
+        /* left: 15px;
+          width: 40px;
+          height: 40px;
+          font-size: 1.4rem; */
+        display: none;
       }
 
       .blog-hero-text h1 {
@@ -359,9 +340,9 @@
             <img src="./images/logo.png" alt="NCCS Logo" class="footer-logo" />
           </a>
 
-          <div class="powered-by">
-            Powered by <strong>LemFi</strong>
-          </div>
+          <!-- <div class="powered-by">
+                        Powered by <strong>LemFi</strong>
+                    </div> -->
         </div>
       </div>
       <nav class="nav">
@@ -372,7 +353,7 @@
           </button>
         </div>
         <ul class="nav-menu">
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
           <li><a href="#">About Us</a></li>
           <li class="dropdown">
             <a href="#">Directors <i class="fas fa-chevron-down"></i></a>
@@ -381,7 +362,8 @@
               <ul class="dropdown-list">
                 <li class="menu-item">
                   <a href="#" class="toggle-sub">
-                    <i class="fas fa-arrow-right"></i> Life Members
+                    <i class="fas fa-arrow-right"></i> Life Members <i class="fas fa-chevron-right chevron"></i>
+
                   </a>
 
                   <div class="sub-directors">
@@ -392,7 +374,8 @@
 
                 <li class="menu-item">
                   <a href="#" class="toggle-sub">
-                    <i class="fas fa-arrow-right"></i> General Members
+                    <i class="fas fa-arrow-right"></i> General Members <i class="fas fa-chevron-right chevron"></i>
+
                   </a>
 
                   <div class="sub-directors">
@@ -502,7 +485,7 @@
             </div>
           </li>
           <!-- Updated Search Item with Dropdown -->
-          <li class="search-item dropdown  search-dropdown  ">
+          <li class="search-item dropdown search-dropdown">
             <a href="#" class="search-toggle">
               <span class="search-text">Search</span><i class="fas fa-search"></i>
 
@@ -549,9 +532,7 @@
         <!-- Title and Description -->
         <div class="blog-hero-text">
           <h1>NCCS ANNUAL HIMALAYAN MELA</h1>
-          <p class="hero-paragraph">
-            Posted on: Nov 26, 2025
-          </p>
+          <p class="hero-paragraph">Posted on: Nov 26, 2025</p>
         </div>
       </div>
     </div>
@@ -657,8 +638,9 @@
                 </div>
                 <h3>NCCS Annual Himalayan Mela</h3>
                 <p>
-                  Hundreds gathered to celebrate Nepali culture, enjoy performances, and participate in workshops
-                  highlighting arts and traditions.
+                  Hundreds gathered to celebrate Nepali culture, enjoy
+                  performances, and participate in workshops highlighting arts
+                  and traditions.
                 </p>
                 <!-- Footer moved to bottom -->
                 <div class="update-footer">
@@ -685,7 +667,8 @@
                 </div>
                 <h3>Community Picnic & Sports Day</h3>
                 <p>
-                  A joyful outdoor gathering filled with games, traditional food, and cultural activities for families.
+                  A joyful outdoor gathering filled with games, traditional
+                  food, and cultural activities for families.
                 </p>
                 <div class="update-footer">
                   <a href="#" class="show-more-btn">SHOW MORE</a>
@@ -711,7 +694,8 @@
                 </div>
                 <h3>Traditional Dance Workshop</h3>
                 <p>
-                  Participants learned classical and folk Nepali dances from expert instructors.
+                  Participants learned classical and folk Nepali dances from
+                  expert instructors.
                 </p>
                 <div class="update-footer">
                   <a href="#" class="show-more-btn">SHOW MORE</a>
@@ -737,7 +721,8 @@
                 </div>
                 <h3>Annual Volunteer Appreciation</h3>
                 <p>
-                  Recognizing the dedication of volunteers who support NCCS programs throughout the year.
+                  Recognizing the dedication of volunteers who support NCCS
+                  programs throughout the year.
                 </p>
                 <div class="update-footer">
                   <a href="#" class="show-more-btn">SHOW MORE</a>

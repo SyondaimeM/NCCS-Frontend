@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Toggle this dropdown
       dropdown.classList.toggle("open");
 
-      // ⭐ If this is the search dropdown → focus the input
+      //   If this is the search dropdown → focus the input
       if (
         dropdown.classList.contains("search-item") &&
         dropdown.classList.contains("open")
@@ -139,6 +139,53 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  const dropdownTriggers = document.querySelectorAll(".dropdown > a");
+  if (window.innerWidth > 996)
+    dropdownTriggers.forEach((trigger) => {
+      const dropdown = trigger.parentElement;
+      let openedByHover = false;
+
+      const openDropdown = () => {
+        document
+          .querySelectorAll(".dropdown.open")
+          .forEach((d) => d !== dropdown && d.classList.remove("open"));
+
+        dropdown.classList.add("open");
+
+        // Focus input if search dropdown
+        if (dropdown.classList.contains("search-item")) {
+          const input = dropdown.querySelector("input");
+          if (input) setTimeout(() => input.focus(), 50);
+        }
+      };
+
+      // CLICK OPEN (forces focus)
+      trigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        openedByHover = false;
+
+        if (dropdown.classList.contains("open")) {
+          dropdown.classList.remove("open");
+          return;
+        }
+
+        openDropdown();
+      });
+
+      dropdown.addEventListener("mouseenter", () => {
+        openedByHover = true;
+        openDropdown();
+      });
+
+      // ONLY CLOSE ON HOVER-OUT IF IT WAS HOVER-OPENED
+
+      dropdown.addEventListener("mouseleave", () => {
+        if (openedByHover) {
+          dropdown.classList.remove("open");
+        }
+      });
+    });
 
   // document.querySelectorAll(".search-dropdown").forEach((searchDrop) => {
   //   const toggle = searchDrop.querySelector("a");
@@ -216,9 +263,21 @@ document.addEventListener("DOMContentLoaded", () => {
     pauseAuto();
   });
 
-  carousel.addEventListener("pointerup", (e) => {
+  carousel.addEventListener("pointermove", (e) => {
+    if (!startX) return;
     endX = e.clientX;
+  });
+
+  carousel.addEventListener("pointerup", () => {
     handleSwipe();
+    startX = 0;
+    endX = 0;
+    startAuto();
+  });
+
+  carousel.addEventListener("pointercancel", () => {
+    startX = 0;
+    endX = 0;
     startAuto();
   });
 
