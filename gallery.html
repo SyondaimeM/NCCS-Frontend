@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Gallery - Nepalese Canadian Community Services</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        .gallery-hero {
+            background: var(--primary);
+            color: var(--white);
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .gallery-hero h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .gallery-hero p {
+            font-size: 18px;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .gallery-section {
+            padding: 80px 0;
+            background: var(--bg-light);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: var(--white);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .gallery-date {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            overflow: hidden;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: var(--white);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary);
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--white);
+            font-size: 40px;
+            cursor: pointer;
+            padding: 16px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: background 0.3s;
+            z-index: 10000;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            text-align: center;
+            padding: 12px 24px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 4px;
+            max-width: 80%;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-hero h1 {
+                font-size: 36px;
+            }
+
+            .gallery-section {
+                padding: 50px 0;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 16px;
+            }
+
+            .lightbox-prev,
+            .lightbox-next {
+                font-size: 30px;
+                padding: 12px;
+            }
+
+            .lightbox-close {
+                font-size: 30px;
+                top: 10px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        <div class="container top-bar-container">
+            <div class="top-left">
+                <span class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+14167359076">416 735 9076</a>
+                </span>
+                <span class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@nccs.com">info@nccs.com</a>
+                </span>
+            </div>
+            <div class="top-right">
+                <a href="#" class="top-link">Become a Member</a>
+                <a href="#" class="top-link calendar-link">
+                    <i class="far fa-calendar"></i> Calendar
+                </a>
+                <div class="language-switcher">
+                    <i class="fas fa-globe"></i>
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="np">NP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="brand">
+                    <a href="index.html">
+                        <img src="./images/logo.png" alt="NCCS Logo" class="footer-logo" />
+                    </a>
+                </div>
+            </div>
+            <nav class="nav">
+                <div class="nav-actions">
+                    <button class="nav-toggle" aria-label="Toggle navigation">
+                        <i class="fas fa-bars open-icon"></i>
+                        <i class="fas fa-times close-icon"></i>
+                    </button>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#">Directors <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">Explore Directors</div>
+                            <ul class="dropdown-list">
+                                <li class="menu-item">
+                                    <a href="#" class="toggle-sub">
+                                        <i class="fas fa-arrow-right"></i> Life Members <i
+                                            class="fas fa-chevron-right chevron"></i>
+                                    </a>
+                                    <div class="sub-directors">
+                                        <a href="members.html"><i class="fas fa-arrow-right"></i> Life Members 1.0</a>
+                                        <a href="members.html"><i class="fas fa-arrow-right"></i> Life Members 2.0</a>
+                                    </div>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="#" class="toggle-sub">
+                                        <i class="fas fa-arrow-right"></i> General Members <i
+                                            class="fas fa-chevron-right chevron"></i>
+                                    </a>
+                                    <div class="sub-directors">
+                                        <a href="members.html"><i class="fas fa-arrow-right"></i> General Members 1.0</a>
+                                        <a href="members.html"><i class="fas fa-arrow-right"></i> General Members 2.0</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Events <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">Explore Events</div>
+                            <ul class="dropdown-list">
+                                <li><a href="events.html"><i class="fas fa-arrow-right"></i> ACADEMIC</a></li>
+                                <li><a href="events.html"><i class="fas fa-arrow-right"></i> NETWORKING & PROFESSIONAL</a></li>
+                                <li><a href="events.html"><i class="fas fa-arrow-right"></i>COMMUNITY & SOCIAL</a></li>
+                                <li><a href="events.html"><i class="fas fa-arrow-right"></i> SPORTS & RECREATION</a></li>
+                                <li><a href="events.html"><i class="fas fa-arrow-right"></i> DIGITAL & HYBRID</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Blog <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">EXPLORE BLOGS</div>
+                            <ul class="dropdown-list">
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i> INFORMATIONAL</a></li>
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i> EDUCATIONAL</a></li>
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i>NEWS & UPDATES</a></li>
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i> OPINION & THOUGHT</a></li>
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i> BUSINESS & PROFESSIONAL</a></li>
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i> TECHNICAL & DIGITAL</a></li>
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i> INSPIRATIONAL</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Get Involved <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">GET INVOLVED</div>
+                            <ul class="dropdown-list">
+                                <li><a href="membership.html"><i class="fas fa-arrow-right"></i> MEMBERSHIP</a></li>
+                                <li><a href="volunteer.html"><i class="fas fa-arrow-right"></i> VOLUNTEER</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">Contact us</a></li>
+                    <li class="dropdown">
+                        <a href="#">More <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-inner">
+                                <div class="dropdown-header">EXPLORE MORE</div>
+                                <div class="dropdown-columns">
+                                    <ul class="dropdown-column">
+                                        <li><a href="#"><i class="fas fa-arrow-right"></i> PRESIDENT'S MESSAGE</a></li>
+                                        <li><a href="#"><i class="fas fa-arrow-right"></i> VOLUNTEER</a></li>
+                                        <li><a href="#"><i class="fas fa-arrow-right"></i> DOCUMENTS</a></li>
+                                        <li><a href="#"><i class="fas fa-arrow-right"></i> LATEST UPDATES</a></li>
+                                    </ul>
+                                    <ul class="dropdown-column">
+                                        <li><a href="#"><i class="fas fa-arrow-right"></i> CAREER</a></li>
+                                        <li><a href="#"><i class="fas fa-arrow-right"></i> FAQS</a></li>
+                                        <li><a href="#"><i class="fas fa-arrow-right"></i> PHONE NUMBERS</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search-item dropdown search-dropdown">
+                        <a href="#" class="search-toggle">
+                            <span class="search-text">Search</span><i class="fas fa-search"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="search-input-wrapper">
+                                <i class="fas fa-search search-icon-inside"></i>
+                                <input type="text" placeholder="Search nccs.com" autofocus />
+                            </div>
+                            <div class="search-suggestions">
+                                <div class="suggestions-header">QUICK LINKS</div>
+                                <ul>
+                                    <li><a href="#"><i class="fas fa-arrow-right"></i> ABOUT US</a></li>
+                                    <li><a href="#"><i class="fas fa-arrow-right"></i> PROGRAM SERVICES</a></li>
+                                    <li><a href="#"><i class="fas fa-arrow-right"></i> EVENTS</a></li>
+                                    <li><a href="#"><i class="fas fa-arrow-right"></i> MEMBERSHIP</a></li>
+                                    <li><a href="#"><i class="fas fa-arrow-right"></i> VOLUNTEER</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1>Photo Gallery</h1>
+            <p>Explore moments from our events, celebrations, and community gatherings. Click on any image to view in full size.</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-grid">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img src="./images/mela.jpg" alt="Himalayan Mela 2025" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Himalayan Mela 2025</div>
+                        <div class="gallery-date">November 26, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="./images/melas.jpg" alt="Community Celebration" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Community Celebration</div>
+                        <div class="gallery-date">October 15, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="./images/mela.jpg" alt="Cultural Performance" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Cultural Performance</div>
+                        <div class="gallery-date">September 10, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item" onclick="openLightbox(3)">
+                    <img src="./images/melas.jpg" alt="Sports Tournament" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Sports Tournament</div>
+                        <div class="gallery-date">August 20, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <img src="./images/mela.jpg" alt="Youth Workshop" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Youth Workshop</div>
+                        <div class="gallery-date">July 5, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <img src="./images/melas.jpg" alt="Annual Gathering" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Annual Gathering</div>
+                        <div class="gallery-date">June 12, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 7 -->
+                <div class="gallery-item" onclick="openLightbox(6)">
+                    <img src="./images/mela.jpg" alt="Cultural Festival" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Cultural Festival</div>
+                        <div class="gallery-date">May 8, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 8 -->
+                <div class="gallery-item" onclick="openLightbox(7)">
+                    <img src="./images/melas.jpg" alt="Community Picnic" />
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Community Picnic</div>
+                        <div class="gallery-date">April 22, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Add more gallery items as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <span class="lightbox-prev" onclick="changeImage(-1)">&#10094;</span>
+        <span class="lightbox-next" onclick="changeImage(1)">&#10095;</span>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="" />
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-logo-desc">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="NCCS Logo">
+                    </div>
+                    <div class="powered-by">
+                        Powered by <strong>LemFi</strong>
+                    </div>
+                </div>
+                <p class="footer-description">
+                    Nepalese Canadian Community Services is dedicated to preserving culture, providing services, and building a stronger community.
+                </p>
+            </div>
+
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Program & Services</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="membership.html">Membership</a></li>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Documents</a></li>
+                        <li><a href="#">Latest Updates</a></li>
+                        <li><a href="#">Media Coverages</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Help Desk</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <p class="address">123 Community Street, Toronto, ON</p>
+                    <p class="phone">+1 (234) 567-890</p>
+                    <p class="email"><a href="mailto:info@nccs.ca">info@nccs.ca</a></p>
+                    <p class="hours">Mon-Fri | 9AM-5PM</p>
+                </div>
+            </div>
+
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="copyright">
+                    &copy; 2025 Nepalese Canadian Community Services. All Rights Reserved.
+                </p>
+                <ul class="legal-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Gallery data with images and captions
+        const galleryData = [
+            { src: './images/mela.jpg', title: 'Himalayan Mela 2025', date: 'November 26, 2025' },
+            { src: './images/melas.jpg', title: 'Community Celebration', date: 'October 15, 2025' },
+            { src: './images/mela.jpg', title: 'Cultural Performance', date: 'September 10, 2025' },
+            { src: './images/melas.jpg', title: 'Sports Tournament', date: 'August 20, 2025' },
+            { src: './images/mela.jpg', title: 'Youth Workshop', date: 'July 5, 2025' },
+            { src: './images/melas.jpg', title: 'Annual Gathering', date: 'June 12, 2025' },
+            { src: './images/mela.jpg', title: 'Cultural Festival', date: 'May 8, 2025' },
+            { src: './images/melas.jpg', title: 'Community Picnic', date: 'April 22, 2025' }
+        ];
+
+        let currentImageIndex = 0;
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const modal = document.getElementById('lightboxModal');
+            const img = document.getElementById('lightboxImage');
+            const caption = document.getElementById('lightboxCaption');
+            
+            img.src = galleryData[index].src;
+            img.alt = galleryData[index].title;
+            caption.innerHTML = `<strong>${galleryData[index].title}</strong><br>${galleryData[index].date}`;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            
+            if (currentImageIndex >= galleryData.length) {
+                currentImageIndex = 0;
+            } else if (currentImageIndex < 0) {
+                currentImageIndex = galleryData.length - 1;
+            }
+            
+            const img = document.getElementById('lightboxImage');
+            const caption = document.getElementById('lightboxCaption');
+            
+            img.src = galleryData[currentImageIndex].src;
+            img.alt = galleryData[currentImageIndex].title;
+            caption.innerHTML = `<strong>${galleryData[currentImageIndex].title}</strong><br>${galleryData[currentImageIndex].date}`;
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Close lightbox when clicking outside the image
+        document.getElementById('lightboxModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation (arrow keys)
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('lightboxModal');
+            if (modal.classList.contains('active')) {
+                if (event.key === 'ArrowLeft') {
+                    changeImage(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeImage(1);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
