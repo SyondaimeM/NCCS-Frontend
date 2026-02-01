@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Nepalese Canadian Community Services</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* About Hero */
+        .about-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #8a0018 100%);
+            color: var(--white);
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .about-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .about-hero p {
+            font-size: 20px;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .intro-content {
+            display: flex;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h2 {
+            font-size: 42px;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        .intro-text .subtitle {
+            font-size: 18px;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .intro-text p {
+            font-size: 17px;
+            line-height: 1.9;
+            color: var(--text-medium);
+            margin-bottom: 20px;
+        }
+
+        .intro-image {
+            flex: 0 0 450px;
+            position: relative;
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .intro-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-medium);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* President's Message Section */
+        .president-section {
+            padding: 100px 0;
+            background: var(--bg-light);
+            position: relative;
+        }
+
+        .president-section::before {
+            content: '"';
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 200px;
+            color: rgba(177, 0, 32, 0.05);
+            font-family: Georgia, serif;
+            line-height: 1;
+            z-index: 0;
+        }
+
+        .president-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .president-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .president-header h2 {
+            font-size: 42px;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .president-header .subtitle {
+            font-size: 16px;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .president-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .president-intro {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .president-photo {
+            flex: 0 0 240px;
+        }
+
+        .president-photo img {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid var(--white);
+            box-shadow: 0 15px 40px rgba(177, 0, 32, 0.2);
+        }
+
+        .president-info {
+            flex: 1;
+        }
+
+        .president-info h3 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .president-title {
+            font-size: 18px;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .president-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .president-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .president-social a:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .president-message {
+            padding: 50px;
+        }
+
+        .president-message p {
+            font-size: 17px;
+            line-height: 2;
+            color: var(--text-medium);
+            margin-bottom: 24px;
+            text-align: justify;
+        }
+
+        .president-signature {
+            margin-top: 40px;
+            text-align: right;
+        }
+
+        .signature-text {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .signature-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .signature-title {
+            font-size: 14px;
+            color: var(--text-medium);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .signature-org {
+            font-size: 13px;
+            color: var(--text-medium);
+        }
+
+        /* Mission Vision Section */
+        .mission-vision {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+        }
+
+        .mv-card {
+            padding: 50px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            border-left: 5px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .mv-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .mv-icon i {
+            font-size: 32px;
+            color: var(--white);
+        }
+
+        .mv-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .mv-card p {
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--text-medium);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .intro-content {
+                flex-direction: column;
+                gap: 50px;
+            }
+
+            .intro-image {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .intro-image img {
+                height: 400px;
+            }
+
+            .intro-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+
+            .president-intro {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .president-photo {
+                flex: 0 0 auto;
+            }
+
+            .president-photo img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .president-social {
+                justify-content: center;
+            }
+
+            .mission-vision-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 36px;
+            }
+
+            .about-hero p {
+                font-size: 16px;
+            }
+
+            .intro-section,
+            .president-section,
+            .mission-vision {
+                padding: 60px 0;
+            }
+
+            .intro-text h2,
+            .president-header h2 {
+                font-size: 32px;
+            }
+
+            .intro-image img {
+                height: 350px;
+            }
+
+            .intro-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .president-intro,
+            .president-message {
+                padding: 30px 20px;
+            }
+
+            .president-photo img {
+                width: 180px;
+                height: 180px;
+            }
+
+            .mv-card {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .intro-image img {
+                height: 280px;
+            }
+
+            .president-photo img {
+                width: 150px;
+                height: 150px;
+                border: 5px solid var(--white);
+            }
+
+            .president-info h3 {
+                font-size: 26px;
+            }
+
+            .stat-number {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        <div class="container top-bar-container">
+            <div class="top-left">
+                <span class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+14167359076">416 735 9076</a>
+                </span>
+                <span class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@nccs.com">info@nccs.com</a>
+                </span>
+            </div>
+            <div class="top-right">
+                <a href="#" class="top-link">Become a Member</a>
+                <a href="#" class="top-link calendar-link">
+                    <i class="far fa-calendar"></i> Calendar
+                </a>
+                <div class="language-switcher">
+                    <i class="fas fa-globe"></i>
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="np">NP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="brand">
+                    <a href="index.html">
+                        <img src="./images/logo.png" alt="NCCS Logo" class="footer-logo" />
+                    </a>
+                </div>
+            </div>
+            <nav class="nav">
+                <div class="nav-actions">
+                    <button class="nav-toggle" aria-label="Toggle navigation">
+                        <i class="fas fa-bars open-icon"></i>
+                        <i class="fas fa-times close-icon"></i>
+                    </button>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-us.html" class="active">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#">Directors <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">Explore Directors</div>
+                            <ul class="dropdown-list">
+                                <li class="menu-item">
+                                    <a href="#" class="toggle-sub">
+                                        <i class="fas fa-arrow-right"></i> Life Members <i
+                                            class="fas fa-chevron-right chevron"></i>
+                                    </a>
+                                    <div class="sub-directors">
+                                        <a href="members.html"><i class="fas fa-arrow-right"></i> Life Members 1.0</a>
+                                        <a href="members.html"><i class="fas fa-arrow-right"></i> Life Members 2.0</a>
+                                    </div>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="#" class="toggle-sub">
+                                        <i class="fas fa-arrow-right"></i> General Members <i
+                                            class="fas fa-chevron-right chevron"></i>
+                                    </a>
+                                    <div class="sub-directors">
+                                        <a href="members.html"><i class="fas fa-arrow-right"></i> General Members
+                                            1.0</a>
+                                        <a href="members.html"><i class="fas fa-arrow-right"></i> General Members
+                                            2.0</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Events <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">Explore Events</div>
+                            <ul class="dropdown-list">
+                                <li><a href="events.html"><i class="fas fa-arrow-right"></i> ACADEMIC</a></li>
+                                <li><a href="events.html"><i class="fas fa-arrow-right"></i> NETWORKING &
+                                        PROFESSIONAL</a></li>
+                                <li><a href="events.html"><i class="fas fa-arrow-right"></i>COMMUNITY & SOCIAL</a></li>
+                                <li><a href="events.html"><i class="fas fa-arrow-right"></i> SPORTS & RECREATION</a>
+                                </li>
+                                <li><a href="events.html"><i class="fas fa-arrow-right"></i> DIGITAL & HYBRID</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Blog <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">EXPLORE BLOGS</div>
+                            <ul class="dropdown-list">
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i> INFORMATIONAL</a></li>
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i> EDUCATIONAL</a></li>
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i>NEWS & UPDATES</a></li>
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i> OPINION & THOUGHT</a></li>
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i> BUSINESS &
+                                        PROFESSIONAL</a></li>
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i> TECHNICAL & DIGITAL</a></li>
+                                <li><a href="blog.html"><i class="fas fa-arrow-right"></i> INSPIRATIONAL</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Get Involved <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">GET INVOLVED</div>
+                            <ul class="dropdown-list">
+                                <li><a href="membership.html"><i class="fas fa-arrow-right"></i> MEMBERSHIP</a></li>
+                                <li><a href="volunteer.html"><i class="fas fa-arrow-right"></i> VOLUNTEER</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">Contact us</a></li>
+                    <li class="dropdown">
+                        <a href="#">More <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-inner">
+                                <div class="dropdown-header">EXPLORE MORE</div>
+                                <div class="dropdown-columns">
+                                    <ul class="dropdown-column">
+                                        <li><a href="#president-message"><i class="fas fa-arrow-right"></i> PRESIDENT'S
+                                                MESSAGE</a></li>
+                                        <li><a href="gallery.html"><i class="fas fa-arrow-right"></i> PHOTO GALLERY</a>
+                                        </li>
+                                        <li><a href="#"><i class="fas fa-arrow-right"></i> DOCUMENTS</a></li>
+                                        <li><a href="#"><i class="fas fa-arrow-right"></i> LATEST UPDATES</a></li>
+                                    </ul>
+                                    <ul class="dropdown-column">
+                                        <li><a href="#"><i class="fas fa-arrow-right"></i> CAREER</a></li>
+                                        <li><a href="#"><i class="fas fa-arrow-right"></i> FAQS</a></li>
+                                        <li><a href="#"><i class="fas fa-arrow-right"></i> PHONE NUMBERS</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="search-item dropdown search-dropdown">
+                        <a href="#" class="search-toggle">
+                            <span class="search-text">Search</span><i class="fas fa-search"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="search-input-wrapper">
+                                <i class="fas fa-search search-icon-inside"></i>
+                                <input type="text" placeholder="Search nccs.com" autofocus />
+                            </div>
+                            <div class="search-suggestions">
+                                <div class="suggestions-header">QUICK LINKS</div>
+                                <ul>
+                                    <li><a href="#"><i class="fas fa-arrow-right"></i> ABOUT US</a></li>
+                                    <li><a href="#"><i class="fas fa-arrow-right"></i> PROGRAM SERVICES</a></li>
+                                    <li><a href="#"><i class="fas fa-arrow-right"></i> EVENTS</a></li>
+                                    <li><a href="#"><i class="fas fa-arrow-right"></i> MEMBERSHIP</a></li>
+                                    <li><a href="#"><i class="fas fa-arrow-right"></i> VOLUNTEER</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About Us</h1>
+            <p>
+                Empowering the Nepalese Canadian community through culture, service, and unity since our inception.
+            </p>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-content">
+                <div class="intro-text">
+                    <div class="subtitle">Who We Are</div>
+                    <h2>Building Bridges, Preserving Heritage</h2>
+                    <p>
+                        The Nepalese Canadian Community Services (NCCS) is a non-profit organization dedicated to
+                        serving the Nepalese Canadian community and promoting Nepali culture, traditions, and values in
+                        Canada.
+                    </p>
+                    <p>
+                        We strive to create a vibrant, inclusive community where members can connect, celebrate their
+                        heritage, and support one another. Through cultural events, educational programs, and community
+                        services, we work to preserve our rich traditions while embracing the opportunities of our new
+                        home.
+                    </p>
+                    <p>
+                        Our mission is to empower individuals and families by providing resources, fostering connections,
+                        and creating opportunities for personal and professional growth. Together, we are building a
+                        stronger, more united community.
+                    </p>
+                </div>
+                <div class="intro-image">
+                    <img src="./images/mela.jpg" alt="NCCS Community" />
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="intro-stats">
+                <div class="stat-card">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Community Members</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Annual Events</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years of Service</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- President's Message Section -->
+    <section class="president-section" id="president-message">
+        <div class="container">
+            <div class="president-content">
+                <div class="president-header">
+                    <div class="subtitle">Leadership</div>
+                    <h2>Message from the President</h2>
+                </div>
+
+                <div class="president-card">
+                    <div class="president-intro">
+                        <div class="president-photo">
+                            <img src="./images/president-img.jpg"
+                                alt="Sudarshan Sapkota" />
+                        </div>
+                        <div class="president-info">
+                            <h3>Sudarshan Sapkota</h3>
+                            <div class="president-title">President, NCCS</div>
+                            <div class="president-social">
+                                <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="president-message">
+                        <p>
+                            Dear Community Members and Friends,
+                        </p>
+                        <p>
+                            <strong>Namaskar!</strong>
+                        </p>
+                        <p>
+                            It is my great honor and privilege to serve as the President of Nepalese Canadian Community Services (NCCS). Since its founding, NCCS has been a pillar for the Nepali diaspora in Canada—promoting unity, preserving our rich culture, and supporting the Nepalese community.
+                        </p>
+                        <p>
+                            Our central mission is to provide essential services and strengthen our community through focused programs in education, social engagement, and cultural preservation that bring people together.
+                        </p>
+                        <p>
+                            As we move forward, NCCS will continue to champion the values of inclusiveness, collaboration, and service. Together, we are committed to building a stronger, more connected Nepali-Canadian community—one that contributes positively to the broader Canadian society while proudly carrying our Nepali identity.
+                        </p>
+                        <p>
+                            I warmly encourage everyone to get involved, volunteer, and actively take part in NCCS initiatives. Your participation, creative ideas, and unwavering enthusiasm are the vital forces that make our community vibrant and meaningful.
+                        </p>
+                        <p>
+                            Thank you for your continued support and trust. Let us work together to make NCCS a true home away from home for every Nepali in Canada.
+                        </p>
+
+                        <div class="president-signature">
+                            <div class="signature-text">Warm regards,</div>
+                            <div class="signature-name">Sudarshan Sapkota</div>
+                            <div class="signature-title">President</div>
+                            <div class="signature-org">Nepalese Canadian Community Services (NCCS)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="mission-vision-grid">
+                <div class="mv-card">
+                    <div class="mv-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>
+                        To empower and unite the Nepalese Canadian community by preserving our cultural heritage,
+                        providing essential services, and fostering opportunities for personal and professional growth.
+                        We are committed to building bridges between generations and creating a supportive environment
+                        where all members can thrive.
+                    </p>
+                </div>
+
+                <div class="mv-card">
+                    <div class="mv-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>
+                        To be the leading organization that celebrates and strengthens the Nepalese Canadian identity,
+                        creating a vibrant, inclusive community where cultural traditions are honored, and every member
+                        has the resources and support needed to succeed in Canada while maintaining strong ties to our
+                        Nepali roots.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-logo-desc">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="NCCS Logo">
+                    </div>
+                    <div class="powered-by">
+                        Powered by <strong>LemFi</strong>
+                    </div>
+                </div>
+                <p class="footer-description">
+                    Nepalese Canadian Community Services is dedicated to preserving culture, providing services, and
+                    building a stronger community.
+                </p>
+            </div>
+
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="#">Program & Services</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="membership.html">Membership</a></li>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Documents</a></li>
+                        <li><a href="#">Latest Updates</a></li>
+                        <li><a href="#">Media Coverages</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Help Desk</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <p class="address">123 Community Street, Toronto, ON</p>
+                    <p class="phone">+1 (234) 567-890</p>
+                    <p class="email"><a href="mailto:info@nccs.ca">info@nccs.ca</a></p>
+                    <p class="hours">Mon-Fri | 9AM-5PM</p>
+                </div>
+            </div>
+
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="copyright">
+                    &copy; 2025 Nepalese Canadian Community Services. All Rights Reserved.
+                </p>
+                <ul class="legal-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
