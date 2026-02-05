@@ -138,6 +138,107 @@
             margin-top: 16px;
         }
 
+        .form-description {
+            font-size: 15px;
+            color: var(--text-medium);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .form-section h4 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .form-instruction {
+            font-size: 14px;
+            color: var(--text-medium);
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            background-color: white;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .radio-option:hover,
+        .checkbox-option:hover {
+            background-color: #f8f9fa;
+        }
+
+        .radio-option input[type="radio"],
+        .radio-option input[type="checkbox"],
+        .checkbox-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .radio-option span,
+        .checkbox-option span {
+            font-size: 15px;
+            color: var(--text-dark);
+        }
+
+        .checkbox-option.declaration {
+            background-color: #f8f9fa;
+            padding: 16px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .checkbox-option.declaration span {
+            line-height: 1.6;
+        }
+
         @media (max-width: 992px) {
             .form-content-layout {
                 flex-direction: column;
@@ -354,26 +455,184 @@
 
                 <!-- Application Form -->
                 <div class="application-form">
-                    <h3>Volunteer Application Form</h3>
+                    <h3>Volunteer With Us – Application Form</h3>
+                    <p class="form-description">Thank you for your interest in volunteering with Nepalese Canadian Community Services (NCCS). Please complete this form and we will contact you accordingly.</p>
+                    
                     <form id="volunteerForm" onsubmit="return handleFormSubmit(event)">
-                        <div class="form-group">
-                            <label for="fullName">Full Name *</label>
-                            <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name" />
+                        <!-- Basic Information -->
+                        <div class="form-section">
+                            <div class="form-group">
+                                <label for="fullName">1. Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dateOfBirth">2. Date of Birth (Optional)</label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">3. Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="+1 (234) 567-890" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">4. Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">5. Address (Optional)</label>
+                                <input type="text" id="address" name="address" placeholder="Your street address" />
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required placeholder="your.email@example.com" />
+                        <!-- NCCS Membership Status -->
+                        <div class="form-section">
+                            <h4>6. Are you currently an NCCS member? *</h4>
+                            
+                            <div class="form-group">
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="nccsMemb" value="yes" required />
+                                        <span>Yes</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="nccsMember" value="no" required />
+                                        <span>No</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="nccsMember" value="not-sure" required />
+                                        <span>Not sure</span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="+1 (234) 567-890" />
+                        <!-- Areas to Volunteer -->
+                        <div class="form-section">
+                            <h4>7. Areas You Would Like to Volunteer In *</h4>
+                            
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="volunteerAreas" value="community-outreach" />
+                                        <span>Community Outreach</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="volunteerAreas" value="cultural-events" />
+                                        <span>Cultural & Community Events</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="volunteerAreas" value="youth-sports" />
+                                        <span>Youth & Sports Programs</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="volunteerAreas" value="seniors-support" />
+                                        <span>Seniors Support</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="volunteerAreas" value="media-communications" />
+                                        <span>Media & Communications</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="volunteerAreas" value="event-logistics" />
+                                        <span>Event Logistics & Setup</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="volunteerAreas" value="fundraising" />
+                                        <span>Fundraising</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="otherArea">Other (please specify):</label>
+                                <input type="text" id="otherArea" name="otherArea" placeholder="Specify other areas" />
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="message">Tell us about your interests and availability *</label>
-                            <textarea id="message" name="message" required placeholder="What areas are you interested in volunteering for? When are you available?"></textarea>
+                        <!-- Skills / Experience -->
+                        <div class="form-section">
+                            <h4>8. Skills / Experience (Optional)</h4>
+                            <p class="form-instruction">Examples: event coordination, translation, accounting, media, IT, first aid, etc.</p>
+                            
+                            <div class="form-group">
+                                <textarea id="skills" name="skills" rows="4" placeholder="Describe your relevant skills and experience..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Availability -->
+                        <div class="form-section">
+                            <h4>9. Availability *</h4>
+                            
+                            <div class="form-group">
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="availability" value="weekdays" required />
+                                        <span>Weekdays</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="availability" value="weekends" required />
+                                        <span>Weekends</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="availability" value="both" required />
+                                        <span>Both</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="availability" value="event-based" required />
+                                        <span>Event-based only</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Languages Spoken -->
+                        <div class="form-section">
+                            <h4>10. Languages Spoken (Optional)</h4>
+                            
+                            <div class="form-group">
+                                <input type="text" id="languages" name="languages" placeholder="e.g., English, Nepali, Hindi" />
+                            </div>
+                        </div>
+
+                        <!-- Emergency Contact -->
+                        <div class="form-section">
+                            <h4>11. Emergency Contact Name & Phone (Optional)</h4>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="emergencyName">Emergency Contact Name</label>
+                                    <input type="text" id="emergencyName" name="emergencyName" placeholder="Contact name" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="emergencyPhone">Emergency Contact Phone</label>
+                                    <input type="tel" id="emergencyPhone" name="emergencyPhone" placeholder="+1 (234) 567-890" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Declaration -->
+                        <div class="form-section">
+                            <h4>12. Declaration *</h4>
+                            
+                            <div class="form-group">
+                                <label class="checkbox-option declaration">
+                                    <input type="checkbox" name="declaration" required />
+                                    <span>I confirm that the information provided is accurate. I agree to follow the policies, values, and code of conduct of Nepalese Canadian Community Services (NCCS) while volunteering.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Date -->
+                        <div class="form-section">
+                            <h4>13. Date *</h4>
+                            
+                            <div class="form-group">
+                                <input type="date" id="applicationDate" name="applicationDate" required />
+                            </div>
                         </div>
 
                         <!-- Google reCAPTCHA v2 Invisible -->
