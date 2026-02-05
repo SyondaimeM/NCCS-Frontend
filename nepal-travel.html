@@ -4,221 +4,66 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Photo Gallery - Nepalese Canadian Community Services</title>
+    <title>Nepal Travel Resources - Nepalese Canadian Community Services</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
-        .gallery-hero {
-            background: var(--primary);
+        .nepal-travel-hero {
+            background: linear-gradient(135deg, rgba(177, 0, 32, 0.95) 0%, rgba(160, 0, 0, 0.95) 100%), url('./images/mela.jpg');
+            background-size: cover;
+            background-position: center;
             color: var(--white);
-            padding: 100px 0 60px;
+            padding: 120px 0 80px;
             text-align: center;
-        }
-
-        .gallery-hero h1 {
-            font-size: 48px;
-            margin-bottom: 16px;
-            font-weight: 700;
-        }
-
-        .gallery-hero p {
-            font-size: 18px;
-            opacity: 0.95;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .gallery-section {
-            padding: 80px 0;
-            background: var(--bg-light);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .gallery-item {
             position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .gallery-overlay {
+        .nepal-travel-hero::before {
+            content: '';
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            color: var(--white);
-            padding: 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 0;
         }
 
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-
-        .gallery-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .gallery-date {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        /* Lightbox Modal */
-        .lightbox-modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.95);
-            overflow: hidden;
-        }
-
-        .lightbox-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox-content {
+        .nepal-travel-hero .container {
             position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            animation: zoomIn 0.3s ease;
+            z-index: 1;
         }
 
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+        .nepal-travel-hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: 90vh;
-            object-fit: contain;
-            display: block;
+        .nepal-travel-hero p {
+            font-size: 20px;
+            opacity: 0.95;
+            max-width: 800px;
             margin: 0 auto;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
+            line-height: 1.7;
             color: var(--white);
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 10000;
-            transition: color 0.3s;
-        }
-
-        .lightbox-close:hover {
-            color: var(--primary);
-        }
-
-        .lightbox-prev,
-        .lightbox-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--white);
-            font-size: 40px;
-            cursor: pointer;
-            padding: 16px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            transition: background 0.3s;
-            z-index: 10000;
-        }
-
-        .lightbox-prev:hover,
-        .lightbox-next:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .lightbox-prev {
-            left: 20px;
-        }
-
-        .lightbox-next {
-            right: 20px;
-        }
-
-        .lightbox-caption {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--white);
-            text-align: center;
-            padding: 12px 24px;
-            background: rgba(0,0,0,0.7);
-            border-radius: 4px;
-            max-width: 80%;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         @media (max-width: 768px) {
-            .gallery-hero h1 {
+            .nepal-travel-hero {
+                padding: 100px 0 60px;
+            }
+
+            .nepal-travel-hero h1 {
                 font-size: 36px;
             }
 
-            .gallery-section {
-                padding: 50px 0;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 16px;
-            }
-
-            .lightbox-prev,
-            .lightbox-next {
-                font-size: 30px;
-                padding: 12px;
-            }
-
-            .lightbox-close {
-                font-size: 30px;
-                top: 10px;
-                right: 15px;
+            .nepal-travel-hero p {
+                font-size: 16px;
             }
         }
     </style>
@@ -238,7 +83,7 @@
                 </span>
             </div>
             <div class="top-right">
-                <a href="#" class="top-link">Become a Member</a>
+                <a href="membership.html" class="top-link">Become a Member</a>
                 <a href="#" class="top-link calendar-link">
                     <i class="far fa-calendar"></i> Calendar
                 </a>
@@ -338,7 +183,7 @@
                     </li>
                     <li><a href="#">Contact us</a></li>
                     <li class="dropdown">
-                        <a href="#">More <i class="fas fa-chevron-down"></i></a>
+                        <a href="#" class="active">More <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
                             <div class="dropdown-inner">
                                 <div class="dropdown-header">EXPLORE MORE</div>
@@ -386,104 +231,171 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="gallery-hero">
+    <section class="nepal-travel-hero">
         <div class="container">
-            <h1>Photo Gallery</h1>
-            <p>Explore moments from our events, celebrations, and community gatherings. Click on any image to view in full size.</p>
+            <h1>Nepal Travel Resources</h1>
+            <p>Your comprehensive guide to planning your journey to Nepal - official government portals, travel information, and essential resources for a safe and memorable experience.</p>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery-section">
+    <!-- Nepal Travel Resources Section -->
+    <section class="nepal-travel-section" style="padding-top: 100px;">
         <div class="container">
-            <div class="gallery-grid">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item" onclick="openLightbox(0)">
-                    <img src="./images/mela.jpg" alt="Himalayan Mela 2025" />
-                    <div class="gallery-overlay">
-                        <div class="gallery-title">Himalayan Mela 2025</div>
-                        <div class="gallery-date">November 26, 2025</div>
+            <div class="travel-categories">
+                <!-- Official Travel & Government -->
+                <div class="travel-category">
+                    <div class="category-header">
+                        <i class="fas fa-landmark"></i>
+                        <h3>Official Travel & Government</h3>
+                    </div>
+                    <div class="resource-links">
+                        <a href="https://ntb.gov.np" target="_blank" rel="noopener" class="resource-link">
+                            <div class="resource-icon"><i class="fas fa-globe"></i></div>
+                            <div class="resource-content">
+                                <h4>Nepal Tourism Board (NTB)</h4>
+                                <p>Official tourism information for destinations, permits, culture & events</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="https://www.welcomenepal.net/" target="_blank" rel="noopener" class="resource-link">
+                            <div class="resource-icon"><i class="fas fa-map-marked-alt"></i></div>
+                            <div class="resource-content">
+                                <h4>Nepal Tourism Official Site</h4>
+                                <p>Travel guides, places to visit & traveler resources</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="https://www.immigration.gov.np" target="_blank" rel="noopener" class="resource-link">
+                            <div class="resource-icon"><i class="fas fa-passport"></i></div>
+                            <div class="resource-content">
+                                <h4>Department of Immigration</h4>
+                                <p>Tourist visa rules & extensions</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="http://www.tourism.gov.np" target="_blank" rel="noopener" class="resource-link">
+                            <div class="resource-icon"><i class="fas fa-building"></i></div>
+                            <div class="resource-content">
+                                <h4>Ministry of Culture, Tourism and Civil Aviation</h4>
+                                <p>Government updates on tourism policies</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="https://www.tourismnpl.gov.np" target="_blank" rel="noopener" class="resource-link">
+                            <div class="resource-icon"><i class="fas fa-info-circle"></i></div>
+                            <div class="resource-content">
+                                <h4>Department of Tourism</h4>
+                                <p>Official tourism department information</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item" onclick="openLightbox(1)">
-                    <img src="./images/melas.jpg" alt="Community Celebration" />
-                    <div class="gallery-overlay">
-                        <div class="gallery-title">Community Celebration</div>
-                        <div class="gallery-date">October 15, 2025</div>
+                <!-- Travel & Transport -->
+                <div class="travel-category">
+                    <div class="category-header">
+                        <i class="fas fa-plane"></i>
+                        <h3>Travel & Transport</h3>
+                    </div>
+                    <div class="resource-links">
+                        <a href="https://www.nepalairlines.com" target="_blank" rel="noopener" class="resource-link">
+                            <div class="resource-icon"><i class="fas fa-plane-departure"></i></div>
+                            <div class="resource-content">
+                                <h4>Nepal Airlines Corporation</h4>
+                                <p>National airline for domestic & international flights</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="https://www.caanepal.org.np" target="_blank" rel="noopener" class="resource-link">
+                            <div class="resource-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="resource-content">
+                                <h4>Civil Aviation Authority of Nepal</h4>
+                                <p>Flight safety, airport services & air travel rules</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item" onclick="openLightbox(2)">
-                    <img src="./images/mela.jpg" alt="Cultural Performance" />
-                    <div class="gallery-overlay">
-                        <div class="gallery-title">Cultural Performance</div>
-                        <div class="gallery-date">September 10, 2025</div>
+                <!-- Trekking & Outdoors -->
+                <div class="travel-category">
+                    <div class="category-header">
+                        <i class="fas fa-mountain"></i>
+                        <h3>Trekking & Outdoors</h3>
+                    </div>
+                    <div class="resource-links">
+                        <a href="https://www.taan.org.np" target="_blank" rel="noopener" class="resource-link">
+                            <div class="resource-icon"><i class="fas fa-hiking"></i></div>
+                            <div class="resource-content">
+                                <h4>Trekking Agencies' Association of Nepal (TAAN)</h4>
+                                <p>Trekking regulations & registered agencies</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="https://tims.ntb.gov.np" target="_blank" rel="noopener" class="resource-link">
+                            <div class="resource-icon"><i class="fas fa-id-card"></i></div>
+                            <div class="resource-content">
+                                <h4>TIMS (Trekker Information Management System)</h4>
+                                <p>Trekking permit portal</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="http://www.nepalmountaineering.org" target="_blank" rel="noopener" class="resource-link">
+                            <div class="resource-icon"><i class="fas fa-flag-checkered"></i></div>
+                            <div class="resource-content">
+                                <h4>Nepal Mountaineering Association</h4>
+                                <p>Mountaineering permits & expedition info</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Gallery Item 4 -->
-                <div class="gallery-item" onclick="openLightbox(3)">
-                    <img src="./images/melas.jpg" alt="Sports Tournament" />
-                    <div class="gallery-overlay">
-                        <div class="gallery-title">Sports Tournament</div>
-                        <div class="gallery-date">August 20, 2025</div>
+                <!-- Other Useful Resources -->
+                <div class="travel-category">
+                    <div class="category-header">
+                        <i class="fas fa-compass"></i>
+                        <h3>Other Useful Official Resources</h3>
+                    </div>
+                    <div class="resource-links">
+                        <a href="http://www.dnpwc.gov.np" target="_blank" rel="noopener" class="resource-link">
+                            <div class="resource-icon"><i class="fas fa-tree"></i></div>
+                            <div class="resource-content">
+                                <h4>Department of National Parks & Wildlife Conservation</h4>
+                                <p>Information on national parks & protected areas</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="https://travel.gc.ca" target="_blank" rel="noopener" class="resource-link">
+                            <div class="resource-icon"><i class="fas fa-user-shield"></i></div>
+                            <div class="resource-content">
+                                <h4>Tourist Police & Safety</h4>
+                                <p>Emergency help & public safety information</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="https://travel.gc.ca" target="_blank" rel="noopener" class="resource-link">
+                            <div class="resource-icon"><i class="fas fa-flag"></i></div>
+                            <div class="resource-content">
+                                <h4>Canadian Consular Info (Canada in Nepal)</h4>
+                                <p>Consular assistance & local Canadian contacts</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
                 </div>
+            </div>
 
-                <!-- Gallery Item 5 -->
-                <div class="gallery-item" onclick="openLightbox(4)">
-                    <img src="./images/mela.jpg" alt="Youth Workshop" />
-                    <div class="gallery-overlay">
-                        <div class="gallery-title">Youth Workshop</div>
-                        <div class="gallery-date">July 5, 2025</div>
-                    </div>
+            <div class="travel-cta">
+                <div class="cta-content">
+                    <h3>Planning Your Trip to Nepal?</h3>
+                    <p>Contact us for guidance, travel tips, and community connections to make your journey memorable.</p>
+                    <a href="index.html#contact" class="btn btn-primary">Get Travel Assistance</a>
                 </div>
-
-                <!-- Gallery Item 6 -->
-                <div class="gallery-item" onclick="openLightbox(5)">
-                    <img src="./images/melas.jpg" alt="Annual Gathering" />
-                    <div class="gallery-overlay">
-                        <div class="gallery-title">Annual Gathering</div>
-                        <div class="gallery-date">June 12, 2025</div>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 7 -->
-                <div class="gallery-item" onclick="openLightbox(6)">
-                    <img src="./images/mela.jpg" alt="Cultural Festival" />
-                    <div class="gallery-overlay">
-                        <div class="gallery-title">Cultural Festival</div>
-                        <div class="gallery-date">May 8, 2025</div>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 8 -->
-                <div class="gallery-item" onclick="openLightbox(7)">
-                    <img src="./images/melas.jpg" alt="Community Picnic" />
-                    <div class="gallery-overlay">
-                        <div class="gallery-title">Community Picnic</div>
-                        <div class="gallery-date">April 22, 2025</div>
-                    </div>
-                </div>
-
-                <!-- Add more gallery items as needed -->
             </div>
         </div>
     </section>
-
-    <!-- Lightbox Modal -->
-    <div id="lightboxModal" class="lightbox-modal">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <span class="lightbox-prev" onclick="changeImage(-1)">&#10094;</span>
-        <span class="lightbox-next" onclick="changeImage(1)">&#10095;</span>
-        <div class="lightbox-content">
-            <img id="lightboxImage" src="" alt="" />
-            <div class="lightbox-caption" id="lightboxCaption"></div>
-        </div>
-    </div>
 
     <!-- Footer Section -->
     <footer class="footer">
@@ -506,9 +418,9 @@
                 <div class="footer-column">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
                         <li><a href="#">Program & Services</a></li>
-                        <li><a href="#">Events</a></li>
+                        <li><a href="events.html">Events</a></li>
                         <li><a href="membership.html">Membership</a></li>
                         <li><a href="volunteer.html">Volunteer</a></li>
                     </ul>
@@ -557,84 +469,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // Gallery data with images and captions
-        const galleryData = [
-            { src: './images/mela.jpg', title: 'Himalayan Mela 2025', date: 'November 26, 2025' },
-            { src: './images/melas.jpg', title: 'Community Celebration', date: 'October 15, 2025' },
-            { src: './images/mela.jpg', title: 'Cultural Performance', date: 'September 10, 2025' },
-            { src: './images/melas.jpg', title: 'Sports Tournament', date: 'August 20, 2025' },
-            { src: './images/mela.jpg', title: 'Youth Workshop', date: 'July 5, 2025' },
-            { src: './images/melas.jpg', title: 'Annual Gathering', date: 'June 12, 2025' },
-            { src: './images/mela.jpg', title: 'Cultural Festival', date: 'May 8, 2025' },
-            { src: './images/melas.jpg', title: 'Community Picnic', date: 'April 22, 2025' }
-        ];
-
-        let currentImageIndex = 0;
-
-        function openLightbox(index) {
-            currentImageIndex = index;
-            const modal = document.getElementById('lightboxModal');
-            const img = document.getElementById('lightboxImage');
-            const caption = document.getElementById('lightboxCaption');
-            
-            img.src = galleryData[index].src;
-            img.alt = galleryData[index].title;
-            caption.innerHTML = `<strong>${galleryData[index].title}</strong><br>${galleryData[index].date}`;
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            const modal = document.getElementById('lightboxModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function changeImage(direction) {
-            currentImageIndex += direction;
-            
-            if (currentImageIndex >= galleryData.length) {
-                currentImageIndex = 0;
-            } else if (currentImageIndex < 0) {
-                currentImageIndex = galleryData.length - 1;
-            }
-            
-            const img = document.getElementById('lightboxImage');
-            const caption = document.getElementById('lightboxCaption');
-            
-            img.src = galleryData[currentImageIndex].src;
-            img.alt = galleryData[currentImageIndex].title;
-            caption.innerHTML = `<strong>${galleryData[currentImageIndex].title}</strong><br>${galleryData[currentImageIndex].date}`;
-        }
-
-        // Close lightbox on Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeLightbox();
-            }
-        });
-
-        // Close lightbox when clicking outside the image
-        document.getElementById('lightboxModal').addEventListener('click', function(event) {
-            if (event.target === this) {
-                closeLightbox();
-            }
-        });
-
-        // Keyboard navigation (arrow keys)
-        document.addEventListener('keydown', function(event) {
-            const modal = document.getElementById('lightboxModal');
-            if (modal.classList.contains('active')) {
-                if (event.key === 'ArrowLeft') {
-                    changeImage(-1);
-                } else if (event.key === 'ArrowRight') {
-                    changeImage(1);
-                }
-            }
-        });
-    </script>
 </body>
 
 </html>
